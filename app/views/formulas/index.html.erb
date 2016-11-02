@@ -1,6 +1,7 @@
 <h1>Formulas</h1>
 <% @formulas.each do |formula| %>
   <p>
+    <%= image_tag formula.image.url(:medium) %>
     <%= link_to formula.title, formula_path(formula) %>
     <%= formula.description %>
   </p>
