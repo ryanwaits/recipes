@@ -1,5 +1,7 @@
 <h1>Formulas</h1>
 <% @formulas.each do |formula| %>
-  <%= link_to formula.title, formula_path(formula) %>
-  <%= formula.description %>
+  <p>
+    <%= link_to formula.title, formula_path(formula) %>
+    <%= formula.description %>
+  </p>
 <% end %>
