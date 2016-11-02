@@ -9,6 +9,20 @@
   </head>
 
   <body>
+    <div class="notifications">
+      <% if flash[:notice] || flash[:alert] %>
+        <p><%= flash[:notice] %></p>
+        <p><%= flash[:alert] %></p>
+      <% end %>
+    </div>
+    <div class="header">
+      <% if current_user %>
+        <p><%= link_to 'New Recipe', new_formula_path %></p>
+        <p><%= link_to 'Log out', logout_path %></p>
+        <% else %>
+        <p><p><%= link_to 'Log in', login_path %></p></p>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
