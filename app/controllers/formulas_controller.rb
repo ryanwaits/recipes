@@ -37,6 +37,6 @@ class FormulasController < ApplicationController
   end
 
   def formula_params
-    params.require(:formula).permit(:title, :description)
+    params.require(:formula).permit(:title, :description, :image)
   end
 end
