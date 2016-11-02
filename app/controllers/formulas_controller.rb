@@ -15,6 +15,13 @@ class FormulasController < ApplicationController
 
   def create
     @formula = Formula.new(formula_params)
+    @formula.user_id = session[:user_id]
+    if @formula.save
+      redirect_to @formula, notice: 'Recipe added!'
+    else
+      render :new
+      flash.now.alert = 'Invalid entry'
+    end
   end
 
   private
