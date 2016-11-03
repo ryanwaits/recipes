@@ -1,8 +1,41 @@
-<h1>Formulas</h1>
-<% @formulas.each do |formula| %>
-  <p>
-    <%= image_tag formula.image.url(:medium) %>
-    <%= link_to formula.title, formula_path(formula) %>
-    <%= formula.description %>
-  </p>
-<% end %>
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="columns is-multiline is-mobile" style="margin-top: 2.5%;">
+        <% @formulas.each do |formula| %>
+          <div class="column is-one-third">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by4">
+                  <%= link_to formula_path(formula) do %>
+                    <%= image_tag formula.image.url(:medium), style: 'width: 300px; height: 300px' %>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-32x32">
+                      <%= link_to formula_path(formula) do %>
+                        <%= image_tag formula.image.url(:medium) %>
+                      <% end %>
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <p class="title is-5"><%= formula.title %></p>
+                  </div>
+                </div>
+
+                <div class="content">
+                  <p><%= formula.description %></p>
+                  <br>
+                  <small><%= formula.created_at.strftime('%B %d %Y') %></small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
