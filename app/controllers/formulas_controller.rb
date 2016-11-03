@@ -10,13 +10,12 @@ class FormulasController < ApplicationController
   end
 
   def new
-    @formula = Formula.new
+    @formula = current_user.formulas.build
   end
 
   def create
-    @formula = Formula.new(formula_params)
-    @formula.user_id = session[:user_id]
-    if @formula.save
+    @formula = current_user.formulas.build(formula_params)
+    if @formula.save!
       redirect_to @formula, notice: 'Recipe added!'
     else
       render :new
@@ -37,6 +36,6 @@ class FormulasController < ApplicationController
   end
 
   def formula_params
-    params.require(:formula).permit(:title, :description, :image)
+    params.require(:formula).permit(:title, :description, :image, ingredients_attributes: [:id, :name, :_destroy], directions_attributes: [:id, :step, :_destroy])
   end
 end
