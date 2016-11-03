@@ -1,6 +1,36 @@
-<%= simple_form_for @formula, {multipart: true} do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :image, as: :file %>
-  <%= f.submit :submit %>
-<% end %>
+<div class="container" style="margin-top: 5%">
+  <%= simple_form_for @formula, {multipart: true} do |f| %>
+    <div class="columns">
+      <div class="column is-half">
+        <p class="control"><%= f.input_field :title, class: 'input is-large', placeholder: 'Recipe' %></p>
+        <p class="control"><%= f.input_field :description, class: 'textarea', placeholder: 'Details' %></p>
+        <p class="control"><%= f.input_field :image %></p>
+        <%= f.submit 'Add recipe', class: 'button is-large' %>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-half">
+        <div class="ingredients">
+          <%= f.simple_fields_for :ingredients do |ingredient| %>
+            <%= render 'ingredient_fields', f: ingredient %>
+          <% end %>
+          <div class="links">
+            <%= link_to_add_association 'Add Ingredient', f, :ingredients %>
+          </div>
+          
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="directions">
+          <%= f.simple_fields_for :directions do |direction| %>
+            <%= render 'direction_fields', f: direction %>
+          <% end %>
+          <div class="links">
+            <%= link_to_add_association 'Add Direction', f, :directions %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
